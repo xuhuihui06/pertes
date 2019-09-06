@@ -1,0 +1,12 @@
+@charset "UTF-8";
+
+body {
+	background-image: url('/pertes/images/login/longmao.jpeg');
+}
+
+#div1 {
+	margin-left:43%;
+	margin-top:10%;
+	width: 15%;
+	height: 40%;
+}
