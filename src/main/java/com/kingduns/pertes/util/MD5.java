@@ -7,7 +7,7 @@ import java.util.List;
 /** 
  * 采用MD5加密解密  
  */  
-public class Demo1 {  
+public class MD5 {  
   
 		
 	public final static String MD5(String s) {
