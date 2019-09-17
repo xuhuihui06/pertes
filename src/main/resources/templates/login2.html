@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>登录</title>
+<link rel="stylesheet" href="bootstrap-4.0.0/dist/css/bootstrap.css" type="text/css">
+<link rel="stylesheet" href="css/login.css" type="text/css">
+</head>
+<body>
+	<div id="div1">
+		<form id="login">
+		  <div class="form-group">
+		    <label for="text">账&nbsp;&nbsp;号:</label>
+		    <input type="text" class="form-control" id="text" name="accountNumber">
+		  </div>
+		  <div class="form-group">
+		    <label for="pwd">密&nbsp;&nbsp;码:</label>
+		    <input type="password" class="form-control" id="pwd" name="passWord">
+		  </div>
+		  <input id="referrer" type="text" name="referrer" class="form-control" style="display:none;">
+		  <button type="button" class="btn btn-primary" id="submitButton" onclick="load()">登&nbsp;录</button>
+		  <button type="button" class="btn btn-light" id="registerButton" onclick="register()">注&nbsp;册</button>
+		</form>
+	</div>
+	<script src="js/sea.js"></script>
+	<script>seajs.use('./js/encrypt');</script>
+	<script src="js/AES.js"></script>
+	<script src="js/MD5.js"></script>
+	<script src="js/RSA.js"></script>
+	<script src="js/encrypt.js"></script>
+	<script src="js/jquery-2.1.1.js"></script>
+	<script src="js/login.js"></script>
+	<script src="bootstrap-4.0.0/dist/js/bootstrap.js"></script>
+</body>
+</html>

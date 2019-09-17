@@ -1,37 +1,37 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>登录</title>
-<link rel="stylesheet" href="bootstrap-4.0.0/dist/css/bootstrap.css" type="text/css">
-<link rel="stylesheet" href="css/login.css" type="text/css">
-</head>
-<body>
-	<div id="div1">
-		<form id="login">
-		  <div class="form-group">
-		    <label for="text">账&nbsp;&nbsp;号:</label>
-		    <input type="text" class="form-control" id="text" name="accountNumber">
-		  </div>
-		  <div class="form-group">
-		    <label for="pwd">密&nbsp;&nbsp;码:</label>
-		    <input type="password" class="form-control" id="pwd" name="passWord">
-		  </div>
-		  <input id="referrer" type="text" name="referrer" class="form-control" style="display:none;">
-		  <button type="button" class="btn btn-primary" id="submitButton" onclick="load()">登&nbsp;录</button>
-		  <button type="button" class="btn btn-light" id="registerButton" onclick="register()">注&nbsp;册</button>
-		</form>
-	</div>
-	<script src="js/jquery-2.1.1.js"></script>
-	<script src="js/sea.js"></script>
-	<script>seajs.use('./js/encrypt');</script>
-	<script src="js/AES.js"></script>
-	<script src="js/MD5.js"></script>
-	<script src="js/RSA.js"></script>
-	<script src="js/encrypt.js"></script>
-	<script src="js/jquery-2.1.1.js"></script>
-	<script src="js/login.js"></script>
-	<script src="bootstrap-4.0.0/dist/js/bootstrap.js"></script>
-</body>
+  <head>
+    <title>登录界面</title>
+    <meta charset="utf-8">
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">    
+	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+	<meta http-equiv="description" content="This is my page">
+<link rel="stylesheet" type="text/css" href="css/css.css" />
+  </head>
+  <body>
+      	<form id="form1" name="form1" action="" method="post">
+     		 <h1>某某公司员工管理平台</h1>
+            <input class=input_1 id=username size=15  name="accountNumber"  placeholder=用户名><br />
+          	<input class=input_1 id=password type=text size=15 name="passWord" placeholder=密码><br />
+
+  	 		<span class="radio_box">
+               <input type="radio" id="radio_1" name="gettype" value="users" checked>
+               <label for="radio_1"></label>
+              普通用户
+        	</span>
+    		<span class="radio_box">
+               <input type="radio" id="radio_2" name="gettype" value="admin">
+               <label for="radio_2"></label>
+               管理员
+       		</span><br/>
+            <input class=input_3 type="button" onclick="load()" value="登录" />
+            <input class=input_3 type="button"  onclick=document.form1.reset() value="重置" /> 
+            <input id="referrer" type="text" name="referrer" class="form-control" style="display:none;">
+     	</form>
+     	<script src="js/jquery-2.1.1.js"></script>
+        <script type="text/javascript" src="js/script.js"></script>  
+        <script src="js/login.js"></script>      
+  </body>
 </html>
