@@ -9,6 +9,7 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.kingduns.pertes.common.bean.User;
@@ -44,16 +45,16 @@ public class UserRealm extends AuthorizingRealm {
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
 		// 1、获取前端页面传过来的用户数据
 		UsernamePasswordToken usernamePasswordToken = (UsernamePasswordToken) token;
-		System.out.println(usernamePasswordToken.getPassword());
 		// 2、查询数据库
 		User user = userService.getUserByAccountNumber(usernamePasswordToken.getUsername());
 		if (user == null) {
 			// 用户不存在返回null，shiro会报UnknownAccountException
 			return null;
-		} else {
-			SimpleAuthenticationInfo simpleAuthenticationInfo = new SimpleAuthenticationInfo(user, user.getPassword(), getName());
+		} else{
+			// 使用MD5盐值加密
+			SimpleAuthenticationInfo simpleAuthenticationInfo = new SimpleAuthenticationInfo(user, user.getPassword(), ByteSource.Util.bytes(user.getCredentialsSalt()), getName());
 			return simpleAuthenticationInfo;
 		}
 	}
-
+	
 }

@@ -122,6 +122,7 @@ public class User implements Serializable{
         this.creTime = creTime;
     }
     
+    // MD5加密的盐值 
     public String getCredentialsSalt() {
 		return this.accountNum + Constants.SALT;
 	}

@@ -5,7 +5,9 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.subject.Subject;
+import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,12 +47,13 @@ public class UserController {
 			subject.login(token);
 			return new ReturnBean<User>(ReturnBean.SUCCESS, "登录成功！", null);
 		} catch (UnknownAccountException e) {
-			//	用户名不存在
+			// 用户名不存在
 			return new ReturnBean<User>(ReturnBean.FAIL, "登录失败，该用户名不存在！", null);
 		} catch (IncorrectCredentialsException e) {
-			//	密码错误
+			// 密码错误
 			return new ReturnBean<User>(ReturnBean.FAIL, "登录失败，密码错误！", null);
 		}
+		
 	}
 	
 	/**

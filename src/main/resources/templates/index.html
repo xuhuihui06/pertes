@@ -3,12 +3,88 @@
 <head>
 <meta charset="UTF-8">
 <title>某某公司人员管理平台</title>
-<link rel="stylesheet" href="bootstrap-4.0.0/dist/css/bootstrap.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+<script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-<h3>首页</h3>
-<a href="user/add">添加用户</a><br>
-<a href="user/update">修改用户</a><br>
-	<script src="bootstrap-4.0.0/dist/js/bootstrap.js"></script>
+	<h3>首页</h3>
+	<a href="user/add">添加用户</a><br>
+	<a href="user/update">修改用户</a><br>
+	<div class="form-group">
+		<div class="col-sm-3">
+			<select name="input_province" id="input_province" class="form-control"></select>
+		</div>
+		<div class="col-sm-3">
+			<select name="input_city" id="input_city" class="form-control"></select>
+		</div>
+		<div class="col-sm-3">
+			<select name="input_area" id="input_area" class="form-control"></select>
+		</div>
+	</div>
+	<script>
+		$(function(){
+			var data;
+			// 获取select对象
+			var input_province = $('#input_province');
+			var input_city = $('#input_city');
+			var input_area = $('#input_area');
+			// 初始化option
+			var preProvince = "<option value=\"\">选择主菜单</option>";
+			var preCity = "<option value=\"\">选择二级菜单</option>";
+			var preArea = "<option value=\"\">选择三级菜单</option>";
+			input_province.html(preProvince);
+			input_city.html(preCity);
+			input_area.html(preArea);
+			// 获取数据加载省级
+			$.ajax({
+				type : "GET",
+				url : "rsat/iteration/getIterationList",
+				success : function (result) {
+					data = result.data;
+					for(temp in data){
+						if(data[temp].pName == null){
+							input_province.append("<option value=" + data[temp].name + ">"
+									+ data[temp].name + "</option>");
+						}
+					}
+				}
+			});
+			
+			// 省 下拉选择发生变化触发的事件
+			input_province.change(function() {
+				// 获取省的值
+				if(input_province.val() != null){
+					input_city.html(preCity);
+					input_area.html(preArea);
+					for(temp in data){
+						if(data[temp].pName == input_province.val()){
+							input_city.append("<option value=" + data[temp].name + ">"
+									+ data[temp].name + "</option>");
+						}
+					}
+				}
+			});
+			
+			// 市下拉选择发生变化触发的事件
+			input_city.change(function() {
+				// 获取省的值
+				if(input_city.val() != null){
+					input_area.html(preArea);
+					for(temp in data){
+						if(data[temp].pName == input_city.val()){
+							input_area.append("<option value=" + data[temp].name + ">"
+									+ data[temp].name + "</option>");
+						}
+					}
+				}
+			});
+			
+			input_area.change(function() {
+				alert("您选择的菜单是：" + input_province.val() + "=>" + input_city.val() + "=>" + input_area.val());
+			});
+		})
+	</script>
 </body>
 </html>
